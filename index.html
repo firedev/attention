@@ -52,11 +52,11 @@
     font-family: 'Cormorant Garamond', Georgia, serif;
     font-weight: 300;
     font-size: clamp(14px, 2vw, 22px);
-    color: rgba(180, 160, 140, 0.5);
+    color: rgba(200, 180, 160, 0.85);
     letter-spacing: 0.15em;
     z-index: 10;
     pointer-events: none;
-    transition: opacity 5s ease;
+    transition: opacity 8s ease-in;
   }
 </style>
 </head>
@@ -71,12 +71,12 @@
   const instruction = document.getElementById('instruction');
 
   const MIN_ORBS = 1;
-  const MAX_ORBS = 5;
+  const MAX_ORBS = 3;
   const BASE_RADIUS = 12;
-  const SPLIT_COOLDOWN = 3000;
+  const SPLIT_COOLDOWN = 8000;
   const MERGE_DISTANCE = 30;
   const INITIAL_SPLIT_TIME = 4000;
-  const INITIAL_SPLIT_COUNT = 2;
+  const INITIAL_SPLIT_COUNT = 1;
   const SPEED_MIN = 40;
   const SPEED_MAX = 80;
   const CENTER_PULL_ZONE = 0.3;
@@ -256,7 +256,7 @@
     if (now - lastSplitTime < SPLIT_COOLDOWN) return;
     let liveOrbs = orbs.filter(o => !o.fadingOut);
     if (liveOrbs.length >= MAX_ORBS - 1) return;
-    if (Math.random() > 0.005) return;
+    if (Math.random() > 0.002) return;
     let candidates = liveOrbs.filter(o => o.age > 2);
     if (candidates.length === 0) return;
     let orb = candidates[Math.floor(Math.random() * candidates.length)];
